@@ -1,0 +1,29 @@
+from flask import Flask, request
+from twilio.twiml.messaging_response import MessagingResponse
+
+app = Flask(__name__)
+
+@app.route('/whatsapp', methods=['POST'])
+def whatsapp_bot():
+    incoming_msg = request.values.get('Body', '').lower()
+    resp = MessagingResponse()
+    
+    if incoming_msg == 'menu':
+        resp.message("👋 Welcome to Vinni-MD Bot! Here are the options:\n"
+                     "1. Get Information\n"
+                     "2. Request Assistance\n"
+                     "3. Explore Services\n"
+                     "4. Contact Support\n\n"
+                     "Please reply with the number of your choice.")
+    elif incoming_msg == '1':
+        # Option 1 functionality
+        resp.message("You selected option 1.")
+    elif incoming_msg == '2':
+        # Option 2 functionality
+        resp.message("You selected option 2.")
+    # Add more elif blocks for other options
+    
+    return str(resp)
+
+if __name__ == '__main__':
+    app.run()
